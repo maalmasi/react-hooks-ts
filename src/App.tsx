@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { Navbar } from 'components/layout/pages';
+import { SignUp, SignIn } from 'components/login-register/pages';
+import { HiddenPage } from 'components/hidden-page/pages';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <Route name="app" path="/">
+                    <Navbar />
+                    <Route path="/hidden" component={HiddenPage} />
+                    <Route path="/sign-up" component={SignUp} />
+                    <Route path="/sign-in" component={SignIn} />
+                </Route>
+                <Redirect from="/" to="/sign-in" />
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
