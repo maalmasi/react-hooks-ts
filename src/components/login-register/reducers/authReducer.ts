@@ -20,21 +20,18 @@ let authReducer: (state: any, action: any) => AuthState = function (
                 isLoading: false,
             };
         case 'LOGIN_SUCCESS':
-            console.log('login');
             return {
                 ...state,
                 authError: null,
                 isLoading: false,
             };
         case 'LOGOUT_SUCCESS':
-            console.log('logout');
             return {
                 ...state,
                 authError: null,
                 isLoading: false,
             };
         case 'LOGOUT_ERROR':
-            console.log('logout');
             return {
                 ...state,
                 authError: 'Sign out failed',
@@ -58,7 +55,6 @@ let authReducer: (state: any, action: any) => AuthState = function (
                 isLoading: true,
             };
         case 'LOADING_FALSE':
-            console.log('login');
             return {
                 ...state,
                 isLoading: false,
