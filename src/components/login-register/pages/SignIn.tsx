@@ -47,7 +47,6 @@ const SignIn: React.FC<SignInProps> = () => {
                             ' - Email is not valid'}
                     </label>
                     <input
-                        className="validate"
                         type="email"
                         name="email"
                         ref={register({
@@ -62,11 +61,16 @@ const SignIn: React.FC<SignInProps> = () => {
                         Password
                         {errors?.password?.type === 'required' &&
                             ' - Password is required'}
+                        {errors?.password?.type === 'minLength' &&
+                            ' - Password should be 6 characters or longer'}
                     </label>
                     <input
                         type="password"
                         name="password"
-                        ref={register({ required: 'Password is required' })}
+                        ref={register({
+                            required: 'Password is required',
+                            minLength: 6,
+                        })}
                         onChange={() => triggerValidation('password')}
                     />
                 </div>
