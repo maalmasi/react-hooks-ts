@@ -19,7 +19,9 @@ interface User {
 
 const SignUp: React.FC<SignUpProps> = () => {
     const dispatch = useDispatch();
-    const { register, handleSubmit } = useForm<SignUpForm>();
+    const { register, errors, triggerValidation, handleSubmit } = useForm<
+        SignUpForm
+    >();
     const onSubmit = (user: User) => {
         dispatch(setLoadingTrueAction());
         dispatch(signUpAction(user));
@@ -38,12 +40,36 @@ const SignUp: React.FC<SignUpProps> = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="grey lighten-5">
                 <h5>Sign Up</h5>
                 <div className="input-field">
-                    <label>Email</label>
-                    <input type="email" name="email" ref={register} />
+                    <label>
+                        Email
+                        {errors?.email?.type === 'required' &&
+                            ' - Email is required'}
+                        {errors?.email?.type === 'pattern' &&
+                            ' - Email is not valid'}
+                    </label>
+                    <input
+                        className="validate"
+                        type="email"
+                        name="email"
+                        ref={register({
+                            required: 'Email is required',
+                            pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        })}
+                        onChange={() => triggerValidation('email')}
+                    />
                 </div>
                 <div className="input-field">
-                    <label>Password</label>
-                    <input type="password" name="password" ref={register} />
+                    <label>
+                        Password
+                        {errors?.password?.type === 'required' &&
+                            ' - Password is required'}
+                    </label>
+                    <input
+                        type="password"
+                        name="password"
+                        ref={register({ required: 'Password is required' })}
+                        onChange={() => triggerValidation('password')}
+                    />
                 </div>
                 <input
                     disabled={isLoading}
