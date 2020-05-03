@@ -3,15 +3,35 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from 'reducers';
+import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
+import { firebaseConfig } from 'common/config';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer);
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunk.withExtraArgument({ getFirebase }))
+);
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+firebase.initializeApp(firebaseConfig);
+
+const rrfProps = {
+    firebase,
+    config: {},
+    dispatch: store.dispatch,
+};
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ReactReduxFirebaseProvider {...rrfProps}>
+            <App />
+        </ReactReduxFirebaseProvider>
     </Provider>,
     document.getElementById('root')
 );
