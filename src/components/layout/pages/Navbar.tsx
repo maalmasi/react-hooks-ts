@@ -3,12 +3,9 @@ import {
     NavbarLinksSignedIn,
     NavbarLinksSignedOut,
 } from 'components/layout/components';
-import { connect } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-interface NavbarProps {
-    auth: AuthProps;
-}
+interface NavbarProps {}
 
 interface AuthProps {
     uid: string;
@@ -27,10 +24,4 @@ const Navbar: React.FC<NavbarProps> = () => {
     );
 };
 
-const mapStateToProps = (state: any) => {
-    return {
-        auth: state.firebase.auth,
-    };
-};
-
-export default connect(mapStateToProps)(Navbar);
+export default Navbar;
