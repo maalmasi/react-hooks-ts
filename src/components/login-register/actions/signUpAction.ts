@@ -1,4 +1,9 @@
-const signUpAction = (user: any) => {
+interface User {
+    email: string;
+    password: string;
+}
+
+const signUpAction = (user: User) => {
     return async (
         dispatch: (...args: any) => void,
         getState: (...args: any) => any,

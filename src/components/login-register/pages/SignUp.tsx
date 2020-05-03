@@ -16,10 +16,15 @@ interface SignUpProps {
     isLoading: boolean;
 }
 
+interface User {
+    email: string;
+    password: string;
+}
+
 const SignUp: React.FC<SignUpProps> = () => {
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm<SignUpForm>();
-    const onSubmit = (user: object) => {
+    const onSubmit = (user: User) => {
         dispatch(setLoadingTrueAction());
         dispatch(signUpAction(user));
     };

@@ -17,10 +17,15 @@ interface SignInProps {
     isLoading: boolean;
 }
 
+interface User {
+    email: string;
+    password: string;
+}
+
 const SignIn: React.FC<SignInProps> = () => {
     const { register, handleSubmit, errors } = useForm<SignInForm>();
     const dispatch = useDispatch();
-    const onSubmit = (user: object) => {
+    const onSubmit = (user: User) => {
         dispatch(setLoadingTrueAction());
         dispatch(signInAction(user));
     };
