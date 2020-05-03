@@ -10,12 +10,7 @@ type SignInForm = {
     password: string;
 };
 
-interface SignInProps {
-    signIn: (...args: any) => any;
-    setLoadingTrue: (...args: any) => any;
-    authError: string;
-    isLoading: boolean;
-}
+interface SignInProps {}
 
 interface User {
     email: string;

@@ -17,8 +17,6 @@ const store = createStore(
     applyMiddleware(thunk.withExtraArgument({ getFirebase }))
 );
 
-export type RootState = ReturnType<typeof rootReducer>;
-
 firebase.initializeApp(firebaseConfig);
 
 const rrfProps = {

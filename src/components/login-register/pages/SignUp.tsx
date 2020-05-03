@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { signUpAction } from 'components/login-register/actions';
 import { setLoadingTrueAction } from 'common/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'index';
 import { Redirect } from 'react-router-dom';
 
 type SignUpForm = {
@@ -11,10 +10,7 @@ type SignUpForm = {
     password: string;
 };
 
-interface SignUpProps {
-    authError: string;
-    isLoading: boolean;
-}
+interface SignUpProps {}
 
 interface User {
     email: string;
@@ -28,7 +24,7 @@ const SignUp: React.FC<SignUpProps> = () => {
         dispatch(setLoadingTrueAction());
         dispatch(signUpAction(user));
     };
-    const auth = useSelector((state: RootState) => state.auth);
+    const auth = useSelector((state: any) => state.auth);
     const { authError, isLoading } = auth;
 
     const firebaseAuth = useSelector((state: any) => state.firebase.auth);
