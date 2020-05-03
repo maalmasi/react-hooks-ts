@@ -4,9 +4,8 @@ const signOutAction = () => {
         getState: (...args: any) => any,
         { getFirebase }: any
     ) => {
-        const firebase = getFirebase();
-
         try {
+            const firebase = getFirebase();
             await firebase.logout();
             dispatch({ type: 'LOGOUT_SUCCESS' });
         } catch (err) {

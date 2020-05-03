@@ -4,6 +4,7 @@ import { signUpAction } from 'components/login-register/actions';
 import { setLoadingTrueAction } from 'common/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { User } from 'common/types';
 
 type SignUpForm = {
     email: string;
@@ -11,11 +12,6 @@ type SignUpForm = {
 };
 
 interface SignUpProps {}
-
-interface User {
-    email: string;
-    password: string;
-}
 
 const SignUp: React.FC<SignUpProps> = () => {
     const dispatch = useDispatch();

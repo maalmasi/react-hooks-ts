@@ -4,6 +4,7 @@ import { signInAction } from 'components/login-register/actions';
 import { setLoadingTrueAction } from 'common/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { User } from 'common/types';
 
 type SignInForm = {
     email: string;
@@ -11,11 +12,6 @@ type SignInForm = {
 };
 
 interface SignInProps {}
-
-interface User {
-    email: string;
-    password: string;
-}
 
 const SignIn: React.FC<SignInProps> = () => {
     const { register, triggerValidation, handleSubmit, errors } = useForm<

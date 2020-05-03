@@ -1,8 +1,7 @@
 import React from 'react';
 import { signOutAction } from 'components/login-register/actions';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface NavbarLinksSignedInProps {}
 

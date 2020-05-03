@@ -1,7 +1,4 @@
-interface User {
-    email: string;
-    password: string;
-}
+import { User } from 'common/types';
 
 const signUpAction = (user: User) => {
     return async (
@@ -9,8 +6,8 @@ const signUpAction = (user: User) => {
         getState: (...args: any) => any,
         { getFirebase }: any
     ) => {
-        const firebase = getFirebase();
         try {
+            const firebase = getFirebase();
             await firebase.createUser({
                 email: user.email,
                 password: user.password,
