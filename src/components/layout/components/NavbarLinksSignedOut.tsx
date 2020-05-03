@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavbarLinksSignedOut = () => {
+interface NavbarLinksSignedOutProps {}
+
+const NavbarLinksSignedOut: React.FC<NavbarLinksSignedOutProps> = () => {
     return (
         <ul className="right">
             <li>
